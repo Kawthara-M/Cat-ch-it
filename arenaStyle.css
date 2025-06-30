@@ -1,0 +1,53 @@
+body {
+  height: 100vh;
+  display: grid;
+  grid-template-columns: 0.1fr 0.8fr 0.1fr;
+  grid-template-rows: 50px 1fr 50px;
+  font-family: "Gloria Hallelujah", cursive;
+}
+
+header,
+footer {
+  grid-column: span 3;
+  text-align: center;
+}
+
+main {
+  /* border: solid 1px black;*/
+  display: grid;
+  grid-template-rows: 1fr 70px;
+  grid-template-columns: 1fr;
+}
+
+.falling-items {
+  background-color: rosybrown;
+}
+
+.falling-items img {
+  position: relative;
+  /* left:50%;*/
+  width: 4%;
+
+  top: 0;
+  animation-name: fall;
+  animation-duration: 4s;
+}
+.catcher {
+  position: relative;
+  left: 50%;
+  width:6%;
+}
+
+@keyframes fall {
+  0% {
+    top: 10%;
+  }
+  100% {
+    top: 100%;
+  }
+}
+.gloria-hallelujah-regular {
+  font-family: "Gloria Hallelujah", cursive;
+  font-weight: 400;
+  font-style: normal;
+}
