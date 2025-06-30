@@ -83,21 +83,29 @@ const catched = () => {
   let itemStart = item.getBoundingClientRect().x
   console.log(itemStart)
   let itemEnd = itemStart + itemWidth
+  let itemParent=item.parentElement.getBoundingClientRect().height
 
-  if (itemStart >= pawStart && itemEnd <= pawEnd) {
+  let itemTop=item.getBoundingClientRect().top
+
+  if (itemStart >= pawStart && itemEnd <= pawEnd && itemTop<.9*itemParent) {
     return true
   } else {
     return false
   }
 }
 
-const movePaw = (direction) => {
-      console.log("reached")
+let currentX = 0
 
-  if(direction==="right"){
-    paw.style.left+=(10* paw.getBoundingClientRect().x)
-    console.log(paw.getBoundingClientRect().x)
+const movePaw = (direction) => {
+
+  if (direction === "right") {
+    currentX += 10
+  } else if (direction === "left") {
+    currentX -= 10
   }
+
+  paw.style.transform = `translateX(${currentX}px)`
+ // console.log("Moved to:", paw.style.transform)
 }
 
 let newItem = generateItems()
@@ -109,13 +117,15 @@ const removeItem = () => {
   newItem = null
   console.log("worked")
 }
-/*if (catched) {
-  htmlitem.addEventListener("animationend", removeItem)
-}*/
+if (catched) {
+ // htmlitem.addEventListener("animationend", removeItem)
+ console.log("catched")
+}
 
-document.addEventListener(('keydown'), (event) => {
+document.addEventListener("keydown", (event) => {
   if (event.key === "ArrowRight") {
-    console.log("clicked")
     movePaw("right")
+  } else if (event.key === "ArrowLeft") {
+    movePaw("left")
   }
 })
