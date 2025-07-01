@@ -81,11 +81,11 @@ END
 
 **Arena Preview**
 <br>
-![Image](preview.png)
+![Image](images/preview.png)
 
 **Arena Preview**
 <br>
-![Image](start.png)
+![Image](images/start.png)
 
 ### **_Future Updates_**
 

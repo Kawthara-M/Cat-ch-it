@@ -47,7 +47,7 @@ class Items {
     const newElement = document.createElement("img")
     const animationDuration = Math.ceil(Math.random() * (6 - 3) + 3) + "s"  // min and max should be variable based on user score
 
-    newElement.setAttribute("src", this.type + ".png")
+    newElement.setAttribute("src", "images/"+this.type + ".png")
     newElement.setAttribute("class", "item")
 
     newElement.style.left = this.initializePosition()
