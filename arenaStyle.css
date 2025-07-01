@@ -21,29 +21,32 @@ main {
 
 .falling-items {
   background-color: rosybrown;
+  position: relative;
+  height: 100%;
 }
 
-.falling-items img {
-  position: relative;
-  /* left:50%;*/
+.item {
+  position: absolute;
   width: 4%;
-
   top: 0;
+ 
+
   animation-name: fall;
   animation-duration: 4s;
+  animation-fill-mode: forwards;
 }
 .catcher {
   position: relative;
   left: 50%;
-  width:6%;
+  width: 6%;
 }
 
 @keyframes fall {
   0% {
-    top: 10%;
+    top: 0;
   }
   100% {
-    top: 100%;
+    top: 95%;
   }
 }
 .gloria-hallelujah-regular {
