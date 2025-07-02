@@ -6,8 +6,8 @@ let displayedScore = document.querySelector("#score")
 // Remove initial item
 let htmlItems = document.querySelectorAll(".item")
 if (htmlItems[0]) htmlItems[0].remove()
-  
-  displayedScore.innerText = score
+
+displayedScore.innerText = score
 
 class Items {
   constructor(type) {
@@ -37,7 +37,19 @@ class Items {
 
   // A class function to randomize the new element position from left
   initializePosition() {
-    return Math.ceil(Math.random() * 99) + "%"
+    htmlItems = document.querySelectorAll(".item")
+    let randomPosition = Math.ceil(Math.random() * 99)
+    let randomPercentage = randomPosition / 100
+    let answer = 0
+
+    htmlItems.forEach((item) => {
+      if (item.offsetLeft / 100 === randomPercentage) {
+        answer = this.initializePosition
+      } else {
+        answer = randomPosition + "%"
+      }
+    })
+    return answer
   }
 
   // A class function to generate a new element and add it to html
@@ -58,8 +70,7 @@ class Items {
         console.log("catched") //should be deleted
         score += this.score
         displayedScore.innerText = score
-          console.log(displayedScore.innerText)
-
+        console.log(displayedScore.innerText)
       }
       removeItem(newElement)
     })
@@ -133,8 +144,7 @@ const movePaw = (direction) => {
       arena.getBoundingClientRect().width + 164
   ) {
     currentX += 10
-  } else if (direction === "left" &&
-    paw.getBoundingClientRect().left > 158) {
+  } else if (direction === "left" && paw.getBoundingClientRect().left > 158) {
     currentX -= 10
   }
 
@@ -162,7 +172,7 @@ const itemInterval = setInterval(() => {
   }
 
   generateItems() // items fall independently
-}, 2000)
+}, 1500)
 
 // Event listeners
 document.addEventListener("keydown", (event) => {
