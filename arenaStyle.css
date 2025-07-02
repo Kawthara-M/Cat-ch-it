@@ -20,7 +20,6 @@ main {
 }
 
 .falling-items {
-  background-color: rosybrown;
   position: relative;
   height: 100%;
 }
@@ -29,11 +28,11 @@ main {
   position: absolute;
   width: 4%;
   top: 0;
- 
 
   animation-name: fall;
   animation-duration: 4s;
   animation-fill-mode: forwards;
+  animation-timing-function: linear;
 }
 .catcher {
   position: relative;
@@ -46,7 +45,7 @@ main {
     top: 0;
   }
   100% {
-    top: 95%;
+    top: 92%;
   }
 }
 .gloria-hallelujah-regular {

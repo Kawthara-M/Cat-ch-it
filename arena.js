@@ -2,13 +2,12 @@
 let score = 0
 let currentX = 0
 const paw = document.querySelector(".catcher")
-const displayedScore = document.querySelector("#score")
-
+let displayedScore = document.querySelector("#score")
 // Remove initial item
 let htmlItems = document.querySelectorAll(".item")
 if (htmlItems[0]) htmlItems[0].remove()
-
-displayedScore.innerText = score
+  
+  displayedScore.innerText = score
 
 class Items {
   constructor(type) {
@@ -45,9 +44,9 @@ class Items {
   initHTMLElement() {
     const parentElement = document.querySelector(".falling-items")
     const newElement = document.createElement("img")
-    const animationDuration = Math.ceil(Math.random() * (6 - 3) + 3) + "s"  // min and max should be variable based on user score
+    const animationDuration = Math.ceil(Math.random() * (4 - 3) + 3) + "s" // min and max should be variable based on user score
 
-    newElement.setAttribute("src", "images/"+this.type + ".png")
+    newElement.setAttribute("src", "images/" + this.type + ".png")
     newElement.setAttribute("class", "item")
 
     newElement.style.left = this.initializePosition()
@@ -59,6 +58,8 @@ class Items {
         console.log("catched") //should be deleted
         score += this.score
         displayedScore.innerText = score
+          console.log(displayedScore.innerText)
+
       }
       removeItem(newElement)
     })
@@ -83,6 +84,7 @@ const generateItems = () => {
       type = "onion"
       break
   }
+
   return new Items(type)
 }
 
@@ -92,7 +94,7 @@ const catched = (itemToBeCatched) => {
   let pawStart = paw.getBoundingClientRect().x
   let pawEnd = pawStart + pawWidth
   let pawTop =
-    paw.getBoundingClientRect().top - (paw.getBoundingClientRect().top * 0.1) 
+    paw.getBoundingClientRect().top - paw.getBoundingClientRect().top * 0.1
 
   let itemWidth = itemToBeCatched.getBoundingClientRect().width
   let itemStart = itemToBeCatched.getBoundingClientRect().x
@@ -121,9 +123,18 @@ const catched = (itemToBeCatched) => {
 
 // A function to move the paw -catcher- upon user clicks + don't forget to reference the learning materials
 const movePaw = (direction) => {
-  if (direction === "right") {
+  let arena = document.querySelector(".catcher-area")
+  // console.log("arena width" + arena.getBoundingClientRect().width)
+  console.log("paw RIGHT" + paw.getBoundingClientRect().width)
+
+  if (
+    direction === "right" &&
+    paw.getBoundingClientRect().right <
+      arena.getBoundingClientRect().width + 164
+  ) {
     currentX += 10
-  } else if (direction === "left") {
+  } else if (direction === "left" &&
+    paw.getBoundingClientRect().left > 158) {
     currentX -= 10
   }
 
@@ -133,14 +144,20 @@ const movePaw = (direction) => {
 // A function to remove items
 const removeItem = (element) => {
   element.remove()
-  console.log("deleted")  //should be deleted later
+  console.log("deleted") //should be deleted later
 }
 
 // generate items
+
 const itemInterval = setInterval(() => {
   if (score < 0) {
+    htmlItems = document.querySelectorAll(".item")
+
+    htmlItems.forEach((item) => {
+      item.style.display = "none"
+    })
     clearInterval(itemInterval)
-    console.log("Game Over")  //should be on screen, this is just to ensure it's working
+    console.log("Game Over") //should be on screen, this is just to ensure it's working
     return
   }
 
