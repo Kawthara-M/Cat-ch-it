@@ -9,12 +9,16 @@
 **[GitHub](https://github.com/Kawthara-M)** |
 **[LinkedIn](www.linkedin.com/in/kawthar-ahmad-331658361)**
 
----
+
 
 ## Description
 
-<p>A cat themed game to catch fallen items. Some are good and increase score and the others are of opposite effect.
-The speed of falling items increase as the score increases. Minus score leads to game over.</p>
+A cat themed game to catch fallen items; good & bad ones each with corresponding effect on score. Minus score leads to game over. The speed of falling items increases along with the score.  
+<br>
+| Deployed version of **[Cat-ch-It](https://cat-ch-it.surge.sh/)** |
+
+
+
 
 ## _Technologies_ Used
 
@@ -22,16 +26,9 @@ The speed of falling items increase as the score increases. Minus score leads to
 - CSS
 - JavaScript
 
----
 
-### Getting Started
-
-##### Click paw to move to the game arena
-
-##### The project is still not deployed but it will be [here](URL).
-
----
 ## Pseudocode
+The following pseudocode was set as an initial plan. It emphises the need of a class to initiate items, a function to generate instances out of this class, and another to determine if items were catched and update score, all while the game isn't considered over yet.
 ```
 let score = 0  
 let gameSpeed = startSpeed  
@@ -76,21 +73,21 @@ ENDWHILE
 
 END
 ```
----
+
 ## Wireframes
 
+**Start Preview**
+<br>
+![Image](images/start.png)
 **Arena Preview**
 <br>
 ![Image](images/preview.png)
 
-**Arena Preview**
-<br>
-![Image](images/start.png)
 
 ### **_Future Updates_**
-
+- [ ] More responiviness to different devices
 - [ ] add levels? where eah has different difficulty
-- [ ] add luck items to amplify the paw size
+
 
 
 ---
@@ -99,8 +96,8 @@ END
 
 ##### Falling Items images: [Flaticon](https://www.flaticon.com/search?word=cat)
 
-##### Markdown Guide: [#](#)
+##### Dark Theme Guide: [FreeCodeCamp](https://www.freecodecamp.org/news/how-to-detect-a-users-preferred-color-scheme-in-javascript-ec8ee514f1ef/)
 
-##### Markdown Cheatsheet: [GitHub](https://guides.github.com/pdfs/markdown-cheatsheet-online.pdf)
+##### Paw Movement Guide: [MDN Web Docs](https://developer.mozilla.org/en-US/docs/Web/CSS/transform-function/translateX)
 
 ---
