@@ -4,25 +4,35 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="arenaStyle.css" />
+    <link rel="stylesheet" href="common.css" />
     <style>
       @import url("https://fonts.googleapis.com/css2?family=Chewy&family=Gloria+Hallelujah&family=Great+Vibes&family=IM+Fell+English+SC&family=Londrina+Shadow&family=Lora:ital,wght@0,400..700;1,400..700&family=Raleway:ital,wght@0,100..900;1,100..900&family=VT323&display=swap");
     </style>
 
-    <script src="arena.js" defer></script>
+<script src="arena.js" defer></script>
+    <script src="script.js" defer></script>
+
     <title>Cat-ch It!</title>
   </head>
   <body>
-    <header><h4>Cat-ch It!</h4></header>
+    <header></header>
     <aside></aside>
     <main>
       <div class="falling-items">
         <div class="item" style="display: none"></div>
+        <div class="over">
+          <h1>Game Over!</h1>
+          <h2>Cat Poisoned . . .</h2>
+          <a href="arena.html"><img src="images/cat-paw-unscreen.gif" /></a>
+        </div>
       </div>
-      <div class="catcher-area"><img src="images/paw.png" class="catcher" /></div>
+      <div class="catcher-area">
+        <img src="images/cat-paw-unscreen.gif" class="catcher" />
+      </div>
     </main>
     <aside></aside>
     <footer>
-      <h4>Score:<span id="score"></span></h4>
+      <h4>Score: <span id="score"></span></h4>
     </footer>
   </body>
 </html>

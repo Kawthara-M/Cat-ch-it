@@ -1,10 +1,12 @@
 // Global Variables
+let currentTheme = "light" // default
 let score = 0
 let currentX = 0
+const gameOver = document.querySelector(".over")
 const paw = document.querySelector(".catcher")
 let displayedScore = document.querySelector("#score")
-// Remove initial item
-let htmlItems = document.querySelectorAll(".item")
+let htmlItems = document.querySelectorAll(".item") // to remove initial dummy item in html
+
 if (htmlItems[0]) htmlItems[0].remove()
 
 displayedScore.innerText = score
@@ -58,8 +60,10 @@ class Items {
     const newElement = document.createElement("img")
     const animationDuration = Math.ceil(Math.random() * (4 - 3) + 3) + "s" // min and max should be variable based on user score
 
-    newElement.setAttribute("src", "images/" + this.type + ".png")
+    const color = currentTheme === "dark" ? "white" : "black"
+    newElement.setAttribute("src", `images/${color}` + `-` + `${this.type}.png`)
     newElement.setAttribute("class", "item")
+    newElement.setAttribute("id", this.type)
 
     newElement.style.left = this.initializePosition()
     newElement.style.animationDuration = animationDuration
@@ -70,7 +74,6 @@ class Items {
         console.log("catched") //should be deleted
         score += this.score
         displayedScore.innerText = score
-        console.log(displayedScore.innerText)
       }
       removeItem(newElement)
     })
@@ -112,14 +115,6 @@ const catched = (itemToBeCatched) => {
   let itemEnd = itemStart + itemWidth
   let itemTop = itemToBeCatched.getBoundingClientRect().top
 
-  /*console.log("paw Top:" + pawTop)  // things are currently working so they have been commented and should be later deleted
-  console.log("paw start: " + pawStart)
-  console.log("paw end:" + pawEnd)
-
-  console.log("item top: " + itemTop)
-  console.log("item start: " + itemStart)
-  console.log("item end:" + itemEnd)*/
-
   if (
     ((itemStart >= pawStart && itemEnd <= pawEnd) ||
       (itemStart < pawStart && itemEnd >= pawStart) ||
@@ -157,7 +152,7 @@ const removeItem = (element) => {
   console.log("deleted") //should be deleted later
 }
 
-// generate items
+// A function to generate items every 1500ms
 
 const itemInterval = setInterval(() => {
   if (score < 0) {
@@ -167,11 +162,12 @@ const itemInterval = setInterval(() => {
       item.style.display = "none"
     })
     clearInterval(itemInterval)
-    console.log("Game Over") //should be on screen, this is just to ensure it's working
+    gameOver.style.display = "block"
+    paw.style.display = "none"
     return
   }
 
-  generateItems() // items fall independently
+  generateItems() 
 }, 1500)
 
 // Event listeners
