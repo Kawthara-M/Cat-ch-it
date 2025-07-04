@@ -65,8 +65,11 @@ class Items {
   initHTMLElement() {
     const parentElement = document.querySelector(".falling-items")
     const newElement = document.createElement("img")
+
     const animationDuration =
       Math.ceil(Math.random() * (maxDuration - minDuration) + minDuration) + "s"
+    const luckAnimation = "1s"
+    const originalPawWidth = paw.style.width
 
     const color = currentTheme === "dark" ? "white" : "black"
     newElement.setAttribute("src", `images/${color}` + `-` + `${this.type}.png`)
@@ -75,6 +78,12 @@ class Items {
 
     newElement.style.left = this.initializePosition()
     newElement.style.animationDuration = animationDuration
+
+    if (newElement.type === "neko") {
+      newElement.style.animationDuration = luckAnimation
+    } else {
+      newElement.style.animationDuration = animationDuration
+    }
 
     parentElement.append(newElement)
     newElement.addEventListener("animationend", () => {
@@ -88,6 +97,14 @@ class Items {
         } else if (score > 0) {
           change.innerText = "+" + this.score
         }
+
+        if (this.type === "neko") {
+          paw.style.width = "7vw"
+          setTimeout(() => {
+            paw.style.width = originalPawWidth
+          }, 60000)
+        }
+
         setTimeout(() => {
           change.style.display = "none"
         }, 400)
@@ -117,6 +134,14 @@ const generateItems = () => {
   }
 
   return new Items(type)
+}
+
+// A function to generate luck cats to widen the paw reach
+const generateLuck = () => {
+  let random = Math.ceil(Math.random() * 70)
+  if (random == 7) {
+    return new Items("neko")
+  }
 }
 
 // Check if item is within the reach of the paw +don't foregt to mention the learning material of getBoundingClientRect
@@ -182,14 +207,17 @@ function runGenerator() {
     minDuration = 2
     maxDuration = 4
   }
-  if (interval <= 1700 && amountToMove < 95) {
+  if (interval <= 1700 && amountToMove < 90) {
     amountToMove += 5
   }
 
-  if (score > 25 && interval >= 300) {
+  if (score > 25 && interval >= 350) {
     interval -= 50
     clearInterval(itemInterval)
     itemInterval = setInterval(runGenerator, interval)
+  }
+  if (score > 25) {
+    generateLuck()
   }
 
   generateItems()
