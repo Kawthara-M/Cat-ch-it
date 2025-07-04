@@ -5,6 +5,7 @@ let currentX = 0
 let minDuration = 3
 let maxDuration = 4.5
 let interval = 2000
+let amountToMove = 15
 
 const gameOver = document.querySelector(".over")
 const paw = document.querySelector(".catcher")
@@ -140,14 +141,13 @@ const movePaw = (direction) => {
     paw.getBoundingClientRect().right <
       arena.getBoundingClientRect().width + 164
   ) {
-    currentX += 10
+    currentX += amountToMove
   } else if (direction === "left" && paw.getBoundingClientRect().left > 158) {
-    currentX -= 10
+    currentX -= amountToMove
   }
 
   paw.style.transform = `translateX(${currentX}px)`
 }
-
 
 let itemInterval = setInterval(runGenerator, interval)
 
@@ -155,7 +155,7 @@ let itemInterval = setInterval(runGenerator, interval)
 function runGenerator() {
   if (score < 0) {
     htmlItems = document.querySelectorAll(".item")
-    htmlItems.forEach((item) => item.style.display = "none")
+    htmlItems.forEach((item) => (item.style.display = "none"))
     clearInterval(itemInterval)
     gameOver.style.display = "block"
     paw.style.display = "none"
@@ -169,11 +169,14 @@ function runGenerator() {
     minDuration = 2
     maxDuration = 4
   }
+  if (interval <= 1700 && amountToMove < 95) {
+    amountToMove += 5
+  }
 
   if (score > 25 && interval >= 300) {
     interval -= 50
     clearInterval(itemInterval)
-    itemInterval = setInterval(runGenerator, interval) 
+    itemInterval = setInterval(runGenerator, interval)
   }
 
   generateItems()
@@ -184,3 +187,4 @@ document.addEventListener("keydown", (event) => {
   if (event.key === "ArrowRight") movePaw("right")
   else if (event.key === "ArrowLeft") movePaw("left")
 })
+//another event handler is needed as an MVP
