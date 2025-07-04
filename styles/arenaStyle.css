@@ -48,7 +48,7 @@ main {
 @media screen and (max-width: 360px) {
   .item {
     width: 10%;
-    height:auto;
+    height: auto;
   }
 }
 .catcher {
@@ -60,7 +60,7 @@ main {
 @media screen and (max-width: 500px) {
   .catcher {
     width: 14vw;
-    height:auto;
+    height: auto;
   }
 }
 
@@ -92,6 +92,10 @@ main {
     width: 10%;
     height: auto;
   }
+}
+#change {
+  color: rgb(50, 217, 223);
+  margin-left:10px;
 }
 .gloria-hallelujah-regular {
   font-family: "Gloria Hallelujah", cursive;

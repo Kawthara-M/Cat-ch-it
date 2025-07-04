@@ -7,12 +7,14 @@ let maxDuration = 4.5
 let interval = 2000
 let amountToMove = 15
 
+let displayedScore = document.querySelector("#score")
+let change = document.querySelector("#change")
+let htmlItems = document.querySelectorAll(".item")
+
 const gameOver = document.querySelector(".over")
 const paw = document.querySelector(".catcher")
-let displayedScore = document.querySelector("#score")
-let htmlItems = document.querySelectorAll(".item") // to remove initial dummy item in html
 
-if (htmlItems[0]) htmlItems[0].remove()
+if (htmlItems[0]) htmlItems[0].remove() // to remove initial dummy item in html
 
 displayedScore.innerText = score
 
@@ -77,8 +79,18 @@ class Items {
     parentElement.append(newElement)
     newElement.addEventListener("animationend", () => {
       if (catched(newElement)) {
+        change.style.display = "inline"
         score += this.score
         displayedScore.innerText = score
+
+        if (this.score < 0) {
+          change.innerText = this.score
+        } else if (score > 0) {
+          change.innerText = "+" + this.score
+        }
+        setTimeout(() => {
+          change.style.display = "none"
+        }, 400)
       }
       newElement.remove()
     })
@@ -159,6 +171,7 @@ function runGenerator() {
     clearInterval(itemInterval)
     gameOver.style.display = "block"
     paw.style.display = "none"
+    change.style.display = "none"
     return
   }
 
