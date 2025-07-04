@@ -4,6 +4,7 @@ let score = 0
 let currentX = 0
 let minDuration = 3
 let maxDuration = 4.5
+let interval = 2000
 
 const gameOver = document.querySelector(".over")
 const paw = document.querySelector(".catcher")
@@ -61,7 +62,8 @@ class Items {
   initHTMLElement() {
     const parentElement = document.querySelector(".falling-items")
     const newElement = document.createElement("img")
-    const animationDuration = Math.ceil(Math.random() * (maxDuration - minDuration) + minDuration) + "s" 
+    const animationDuration =
+      Math.ceil(Math.random() * (maxDuration - minDuration) + minDuration) + "s"
 
     const color = currentTheme === "dark" ? "white" : "black"
     newElement.setAttribute("src", `images/${color}` + `-` + `${this.type}.png`)
@@ -147,21 +149,20 @@ const movePaw = (direction) => {
 }
 
 
-// A function to generate items every 1500ms
+let itemInterval = setInterval(runGenerator, interval)
 
-const itemInterval = setInterval(() => {
+// A function to generate items every -interval- of time and update animation duration and interval based on score
+function runGenerator() {
   if (score < 0) {
     htmlItems = document.querySelectorAll(".item")
-
-    htmlItems.forEach((item) => {
-      item.style.display = "none"
-    })
+    htmlItems.forEach((item) => item.style.display = "none")
     clearInterval(itemInterval)
     gameOver.style.display = "block"
     paw.style.display = "none"
     return
   }
-    if (score > 20 && minDuration >= 0.5) {
+
+  if (score > 20 && minDuration >= 0.5) {
     minDuration -= 0.5
     maxDuration -= 0.5
   } else {
@@ -169,8 +170,14 @@ const itemInterval = setInterval(() => {
     maxDuration = 4
   }
 
-  generateItems() 
-}, 1500)
+  if (score > 25 && interval >= 300) {
+    interval -= 50
+    clearInterval(itemInterval)
+    itemInterval = setInterval(runGenerator, interval) 
+  }
+
+  generateItems()
+}
 
 // Event listeners
 document.addEventListener("keydown", (event) => {
