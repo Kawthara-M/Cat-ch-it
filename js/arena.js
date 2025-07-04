@@ -2,6 +2,9 @@
 let currentTheme = "light" // default
 let score = 0
 let currentX = 0
+let minDuration = 3
+let maxDuration = 4.5
+
 const gameOver = document.querySelector(".over")
 const paw = document.querySelector(".catcher")
 let displayedScore = document.querySelector("#score")
@@ -37,12 +40,12 @@ class Items {
     }
   }
 
-  // A class function to randomize the new element position from left
+  // A class function to randomize the new element position from left and ensure each item is differently positioned
   initializePosition() {
     htmlItems = document.querySelectorAll(".item")
     let randomPosition = Math.ceil(Math.random() * 99)
     let randomPercentage = randomPosition / 100
-    let answer = 0
+    let answer = 0 // change variable name
 
     htmlItems.forEach((item) => {
       if (item.offsetLeft / 100 === randomPercentage) {
@@ -58,7 +61,7 @@ class Items {
   initHTMLElement() {
     const parentElement = document.querySelector(".falling-items")
     const newElement = document.createElement("img")
-    const animationDuration = Math.ceil(Math.random() * (4 - 3) + 3) + "s" // min and max should be variable based on user score
+    const animationDuration = Math.ceil(Math.random() * (maxDuration - minDuration) + minDuration) + "s" 
 
     const color = currentTheme === "dark" ? "white" : "black"
     newElement.setAttribute("src", `images/${color}` + `-` + `${this.type}.png`)
@@ -71,11 +74,10 @@ class Items {
     parentElement.append(newElement)
     newElement.addEventListener("animationend", () => {
       if (catched(newElement)) {
-        console.log("catched") //should be deleted
         score += this.score
         displayedScore.innerText = score
       }
-      removeItem(newElement)
+      newElement.remove()
     })
   }
 }
@@ -130,8 +132,6 @@ const catched = (itemToBeCatched) => {
 // A function to move the paw -catcher- upon user clicks + don't forget to reference the learning materials
 const movePaw = (direction) => {
   let arena = document.querySelector(".catcher-area")
-  // console.log("arena width" + arena.getBoundingClientRect().width)
-  console.log("paw RIGHT" + paw.getBoundingClientRect().width)
 
   if (
     direction === "right" &&
@@ -146,11 +146,6 @@ const movePaw = (direction) => {
   paw.style.transform = `translateX(${currentX}px)`
 }
 
-// A function to remove items
-const removeItem = (element) => {
-  element.remove()
-  console.log("deleted") //should be deleted later
-}
 
 // A function to generate items every 1500ms
 
@@ -165,6 +160,13 @@ const itemInterval = setInterval(() => {
     gameOver.style.display = "block"
     paw.style.display = "none"
     return
+  }
+    if (score > 20 && minDuration >= 0.5) {
+    minDuration -= 0.5
+    maxDuration -= 0.5
+  } else {
+    minDuration = 2
+    maxDuration = 4
   }
 
   generateItems() 
