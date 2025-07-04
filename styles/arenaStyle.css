@@ -4,6 +4,7 @@ body {
   grid-template-columns: 0.1fr 0.8fr 0.1fr;
   grid-template-rows: 50px 1fr 70px;
   font-family: "Gloria Hallelujah", cursive;
+  overflow-x: hidden;
 }
 
 header,
@@ -26,6 +27,7 @@ main {
   display: flex;
   flex-direction: column;
   justify-content: center;
+  width: auto;
 }
 
 .item {
@@ -95,7 +97,7 @@ main {
 }
 #change {
   color: rgb(50, 217, 223);
-  margin-left:10px;
+  margin-left: 10px;
 }
 .gloria-hallelujah-regular {
   font-family: "Gloria Hallelujah", cursive;

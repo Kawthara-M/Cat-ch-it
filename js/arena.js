@@ -13,6 +13,8 @@ let htmlItems = document.querySelectorAll(".item")
 
 const gameOver = document.querySelector(".over")
 const paw = document.querySelector(".catcher")
+  let arena = document.querySelector(".catcher-area")
+
 
 if (htmlItems[0]) htmlItems[0].remove() // to remove initial dummy item in html
 
@@ -116,24 +118,10 @@ class Items {
 
 // A function to randomly create objects -items out of the Items class
 const generateItems = () => {
-  let random = Math.ceil(Math.random() * 4)
-  let type
-  switch (random) {
-    case 1:
-      type = "fish"
-      break
-    case 2:
-      type = "wool"
-      break
-    case 3:
-      type = "snakePlant"
-      break
-    case 4:
-      type = "onion"
-      break
-  }
-
-  return new Items(type)
+  let random = Math.floor(Math.random() * 4)
+  let types = ["fish", "wool", "snakePlant", "onion"]
+  console.log(types[random])
+  return new Items(types[random])
 }
 
 // A function to generate luck cats to widen the paw reach
@@ -171,19 +159,36 @@ const catched = (itemToBeCatched) => {
 
 // A function to move the paw -catcher- upon user clicks + don't forget to reference the learning materials
 const movePaw = (direction) => {
-  let arena = document.querySelector(".catcher-area")
+ // let arena = document.querySelector(".catcher-area")
 
   if (
     direction === "right" &&
     paw.getBoundingClientRect().right <
-      arena.getBoundingClientRect().width + 164
+      arena.getBoundingClientRect().width + arena.getBoundingClientRect().x
   ) {
     currentX += amountToMove
-  } else if (direction === "left" && paw.getBoundingClientRect().left > 158) {
+  } else if (
+    direction === "left" &&
+    paw.getBoundingClientRect().left > arena.getBoundingClientRect().x
+  ) {
     currentX -= amountToMove
   }
 
   paw.style.transform = `translateX(${currentX}px)`
+}
+
+const movePawByTouch = (distance) => {
+  const pawDimension = paw.getBoundingClientRect()
+  const arenaDimension = arena.getBoundingClientRect()
+
+  const newX = currentX + distance
+  if (
+    pawDimension.left + distance >= arenaDimension.left &&
+    pawDimension.right + distance <= arenaDimension.right
+  ) {
+    currentX = newX
+    paw.style.transform = `translateX(${currentX}px)`
+  }
 }
 
 let itemInterval = setInterval(runGenerator, interval)
@@ -229,3 +234,31 @@ document.addEventListener("keydown", (event) => {
   else if (event.key === "ArrowLeft") movePaw("left")
 })
 //another event handler is needed as an MVP
+// an event to handle touches
+
+let startTouch = 0
+let isTouching = false
+
+document.addEventListener("touchstart", (event) => {
+  const x = event.touches[0].clientX
+  const pawDimenions = paw.getBoundingClientRect()
+
+  if (x >= pawDimenions.left && x <= pawDimenions.right) {
+    startTouch = x
+    isTouching = true
+  }
+})
+
+document.addEventListener("touchmove", (event) => {
+  if (!isTouching) return
+
+  const currentTouch = event.touches[0].clientX
+  const distance = currentTouch - startTouch
+
+  movePawByTouch(distance)
+  startTouch = currentTouch 
+})
+
+document.addEventListener("touchend", () => {
+  isTouching = false
+})
