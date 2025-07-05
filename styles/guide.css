@@ -1,0 +1,67 @@
+body {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-family: "Gloria Hallelujah", cursive;
+}
+
+.conatiner {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr;
+  width: 70%;
+  height: 250px;
+  border: solid 2px rgb(75, 75, 75);
+  border-radius: 5px;
+  overflow: auto;
+  margin-top: 20vh;
+}
+.flex-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 1.5% 0;
+}
+
+.item-container {
+  display: grid;
+  grid-template-columns: 0.2fr 0.8fr;
+  grid-template-rows: 1fr;
+  border-radius: 4px;
+
+  width: 90%;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  padding: 2px;
+}
+img {
+  width: 50%;
+}
+section {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+section h5 {
+  margin-top: 0;
+  margin-bottom: 1%;
+}
+
+.img-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 12%;
+}
+p {
+  font-size: 70%;
+  margin-top: 0;
+  margin-bottom: 2px;
+}
+
+a {
+  text-decoration: none;
+  color: rgb(59, 59, 59);
+  cursor: pointer;
+}

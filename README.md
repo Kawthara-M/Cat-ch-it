@@ -13,7 +13,7 @@
 
 ## Description
 
-A cat themed game to catch fallen items; good & bad ones each with corresponding effect on score. Minus score leads to game over. The speed of falling items increases along with the score.  
+A cat themed game to catch fallen items; good & bad ones each with corresponding effect on score. Minus score leads to game over. The speed of falling items increases along with the score. Support to touchable devices was considered within development.
 <br>
 | Deployed version of **[Cat-ch-It](https://cat-ch-it.surge.sh/)** |
 
@@ -86,7 +86,7 @@ END
 
 ### **_Future Updates_**
 - [ ] More responiviness to different devices
-- [ ] add levels? where eah has different difficulty
+- [ ] Audio to livesh the game
 
 
 
@@ -99,5 +99,9 @@ END
 ##### Dark Theme Guide: [FreeCodeCamp](https://www.freecodecamp.org/news/how-to-detect-a-users-preferred-color-scheme-in-javascript-ec8ee514f1ef/)
 
 ##### Paw Movement Guide: [MDN Web Docs](https://developer.mozilla.org/en-US/docs/Web/CSS/transform-function/translateX)
+
+##### Touch Events Handlers Guide: [W3School](https://www.w3schools.com/jsref/event_touchstart.asp)
+
+
 
 ---

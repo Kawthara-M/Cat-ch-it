@@ -6,15 +6,18 @@ let minDuration = 3
 let maxDuration = 4.5
 let interval = 2000
 let amountToMove = 15
+let startTouch = 0
+let isTouching = false
 
 let displayedScore = document.querySelector("#score")
 let change = document.querySelector("#change")
 let htmlItems = document.querySelectorAll(".item")
+let arena = document.querySelector(".catcher-area")
 
 const gameOver = document.querySelector(".over")
 const paw = document.querySelector(".catcher")
-  let arena = document.querySelector(".catcher-area")
-
+const arenaDimension = arena.getBoundingClientRect()
+let pawDimension = paw.getBoundingClientRect()
 
 if (htmlItems[0]) htmlItems[0].remove() // to remove initial dummy item in html
 
@@ -27,6 +30,7 @@ class Items {
     this.initHTMLElement()
   }
 
+  // A class function to set the score of each item
   setScore() {
     switch (this.type) {
       case "fish":
@@ -35,11 +39,17 @@ class Items {
       case "wool":
         this.score = 5
         break
+      case "box":
+        this.score = 8
+        break
       case "snakePlant":
         this.score = -10
         break
       case "onion":
         this.score = -5
+        break
+      case "chocolate":
+        this.score = -8
         break
       default:
         this.score = 0
@@ -51,16 +61,16 @@ class Items {
     htmlItems = document.querySelectorAll(".item")
     let randomPosition = Math.ceil(Math.random() * 99)
     let randomPercentage = randomPosition / 100
-    let answer = 0 // change variable name
+    let position = 0 // change variable name
 
     htmlItems.forEach((item) => {
       if (item.offsetLeft / 100 === randomPercentage) {
-        answer = this.initializePosition
+        position = this.initializePosition
       } else {
-        answer = randomPosition + "%"
+        position = randomPosition + "%"
       }
     })
-    return answer
+    return position
   }
 
   // A class function to generate a new element and add it to html
@@ -76,10 +86,10 @@ class Items {
     const color = currentTheme === "dark" ? "white" : "black"
     newElement.setAttribute("src", `images/${color}` + `-` + `${this.type}.png`)
     newElement.setAttribute("class", "item")
-    newElement.setAttribute("id", this.type)
+   /* newElement.setAttribute("id", this.type) // is this needed?*/
+    console.log(newElement.src)
 
     newElement.style.left = this.initializePosition()
-    newElement.style.animationDuration = animationDuration
 
     if (newElement.type === "neko") {
       newElement.style.animationDuration = luckAnimation
@@ -116,11 +126,10 @@ class Items {
   }
 }
 
-// A function to randomly create objects -items out of the Items class
+// A function to randomly create objects -items- out of the Items class
 const generateItems = () => {
-  let random = Math.floor(Math.random() * 4)
-  let types = ["fish", "wool", "snakePlant", "onion"]
-  console.log(types[random])
+  let random = Math.floor(Math.random() * 6)
+  let types = ["fish", "wool", "box", "snakePlant", "onion", "chocolate"]
   return new Items(types[random])
 }
 
@@ -132,18 +141,19 @@ const generateLuck = () => {
   }
 }
 
-// Check if item is within the reach of the paw +don't foregt to mention the learning material of getBoundingClientRect
+// Check if item is within the reach of the paw, getBoundingClientRect() use is guided by "https://developer.mozilla.org/en-US/docs/Web/API/Element/getBoundingClientRect"
 const catched = (itemToBeCatched) => {
-  let pawWidth = paw.getBoundingClientRect().width
-  let pawStart = paw.getBoundingClientRect().x
+  pawDimension = paw.getBoundingClientRect()
+  let pawWidth = pawDimension.width
+  let pawStart = pawDimension.x
   let pawEnd = pawStart + pawWidth
-  let pawTop =
-    paw.getBoundingClientRect().top - paw.getBoundingClientRect().top * 0.1
+  let pawTop = pawDimension.top - pawDimension.top * 0.1
 
-  let itemWidth = itemToBeCatched.getBoundingClientRect().width
-  let itemStart = itemToBeCatched.getBoundingClientRect().x
+  let itemDimensions = itemToBeCatched.getBoundingClientRect()
+  let itemWidth = itemDimensions.width
+  let itemStart = itemDimensions.x
   let itemEnd = itemStart + itemWidth
-  let itemTop = itemToBeCatched.getBoundingClientRect().top
+  let itemTop = itemDimensions.top
 
   if (
     ((itemStart >= pawStart && itemEnd <= pawEnd) ||
@@ -157,31 +167,27 @@ const catched = (itemToBeCatched) => {
   }
 }
 
-// A function to move the paw -catcher- upon user clicks + don't forget to reference the learning materials
+// A function to move the paw -catcher- upon user clicks; guided by "https://developer.mozilla.org/en-US/docs/Web/CSS/transform-function/translateX"
 const movePaw = (direction) => {
- // let arena = document.querySelector(".catcher-area")
+  pawDimension = paw.getBoundingClientRect()
 
   if (
     direction === "right" &&
-    paw.getBoundingClientRect().right <
-      arena.getBoundingClientRect().width + arena.getBoundingClientRect().x
+    pawDimension.right < arenaDimension.width + arenaDimension.x
   ) {
     currentX += amountToMove
-  } else if (
-    direction === "left" &&
-    paw.getBoundingClientRect().left > arena.getBoundingClientRect().x
-  ) {
+  } else if (direction === "left" && pawDimension.left > arenaDimension.x) {
     currentX -= amountToMove
   }
 
   paw.style.transform = `translateX(${currentX}px)`
 }
 
+//A function to move th paw by touch, guided by "https://www.w3schools.com/jsref/event_touchstart.asp"
 const movePawByTouch = (distance) => {
-  const pawDimension = paw.getBoundingClientRect()
-  const arenaDimension = arena.getBoundingClientRect()
-
+  pawDimension = paw.getBoundingClientRect()
   const newX = currentX + distance
+
   if (
     pawDimension.left + distance >= arenaDimension.left &&
     pawDimension.right + distance <= arenaDimension.right
@@ -194,11 +200,13 @@ const movePawByTouch = (distance) => {
 let itemInterval = setInterval(runGenerator, interval)
 
 // A function to generate items every -interval- of time and update animation duration and interval based on score
+// as long as the game isn't over
 function runGenerator() {
   if (score < 0) {
     htmlItems = document.querySelectorAll(".item")
     htmlItems.forEach((item) => (item.style.display = "none"))
     clearInterval(itemInterval)
+
     gameOver.style.display = "block"
     paw.style.display = "none"
     change.style.display = "none"
@@ -233,17 +241,13 @@ document.addEventListener("keydown", (event) => {
   if (event.key === "ArrowRight") movePaw("right")
   else if (event.key === "ArrowLeft") movePaw("left")
 })
-//another event handler is needed as an MVP
-// an event to handle touches
 
-let startTouch = 0
-let isTouching = false
-
+// The following event listeners were written with guide of "https://www.w3schools.com/jsref/event_touchstart.asp"
 document.addEventListener("touchstart", (event) => {
   const x = event.touches[0].clientX
-  const pawDimenions = paw.getBoundingClientRect()
+  pawDimension = paw.getBoundingClientRect()
 
-  if (x >= pawDimenions.left && x <= pawDimenions.right) {
+  if (x >= pawDimension.left && x <= pawDimension.right) {
     startTouch = x
     isTouching = true
   }
@@ -256,7 +260,7 @@ document.addEventListener("touchmove", (event) => {
   const distance = currentTouch - startTouch
 
   movePawByTouch(distance)
-  startTouch = currentTouch 
+  startTouch = currentTouch
 })
 
 document.addEventListener("touchend", () => {

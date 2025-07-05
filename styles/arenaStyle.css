@@ -2,7 +2,7 @@ body {
   height: 100vh;
   display: grid;
   grid-template-columns: 1fr;
-  grid-template-rows: 50px 1fr 70px;
+  grid-template-rows: 50px 1fr 60px;
   font-family: "Gloria Hallelujah", cursive;
   overflow: hidden;
 }
@@ -15,12 +15,11 @@ footer {
 
 main {
   display: grid;
-  grid-template-rows: 1fr 70px;
+  grid-template-rows: 1fr 60px;
   grid-template-columns: 1fr;
   position: relative;
-  margin-right:4%;
+  margin-right: 4%;
   margin-left: 4%;
-
 }
 
 .falling-items {
@@ -35,7 +34,7 @@ main {
 .item {
   position: absolute;
   width: 4vw;
-  height:auto;
+  height: auto;
   top: 0;
 
   animation-name: fall;
@@ -57,6 +56,10 @@ main {
 }
 .catcher-area {
   position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 .catcher {
   position: relative;
@@ -103,9 +106,4 @@ main {
 #change {
   color: rgb(50, 217, 223);
   margin-left: 10px;
-}
-.gloria-hallelujah-regular {
-  font-family: "Gloria Hallelujah", cursive;
-  font-weight: 400;
-  font-style: normal;
 }
