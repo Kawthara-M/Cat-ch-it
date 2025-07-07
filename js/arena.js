@@ -38,19 +38,19 @@ class Items {
         this.score = 10
         break
       case "wool":
-        this.score = 5
+        this.score = 20
         break
       case "box":
-        this.score = 8
+        this.score = 30
         break
       case "snakePlant":
         this.score = -10
         break
       case "onion":
-        this.score = -5
+        this.score = -20
         break
       case "chocolate":
-        this.score = -8
+        this.score = -30
         break
       default:
         this.score = 0
@@ -115,9 +115,9 @@ class Items {
         }
 
         if (this.type === "neko") {
-          paw.style.width = originalPawWidth + originalPawWidth * 0.5 + "px"
+          paw.style.width = originalPawWidth + originalPawWidth * 0.4 + "px"
           setTimeout(() => {
-            paw.style.width = originalPawWidth
+            paw.style.width = originalPawWidth+"px"
           }, 60000)
         }
 
@@ -229,7 +229,7 @@ function runGenerator() {
     minDuration = 2
     maxDuration = 4
   }
-  if (interval <= 1700 && amountToMove < 85) {
+  if (interval <= 1700 && amountToMove < 80) {
     amountToMove += 5
   }
 

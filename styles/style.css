@@ -11,7 +11,7 @@ body {
 }
 
 header {
-  font-size: large;
+  font-size: 1rem;
   cursor: pointer;
   animation-name: shadow;
   animation-duration: 6s;
@@ -19,9 +19,8 @@ header {
 }
 
 .intro {
-  height: 260px;
-  width: 80%;
-  max-width: 60%;
+  height: 380px;
+  width: 70%;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -38,7 +37,7 @@ h1 {
   width: 10%;
 
   animation-name: shadow;
-  animation-duration: 6s;
+  animation-duration: 5s;
   animation-iteration-count: infinite;
 }
 
@@ -46,16 +45,18 @@ h1 {
   0%,
   50% {
     filter: drop-shadow(0 0 0.75rem rgb(50, 217, 223));
+    font-weight: bold;
   }
   100% {
     filter: drop-shadow(0 0 0.75rem var(--bg-color));
+    font-weight: normal;
   }
 }
 
 footer {
   display: flex;
   justify-content: center;
-  font-size: medium;
+  font-size: 1rem;
   cursor: pointer;
   margin-bottom: 6px;
 }

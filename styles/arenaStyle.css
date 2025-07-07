@@ -43,7 +43,7 @@ main {
 }
 @media screen and (min-width: 800px) {
   .item {
-    width: 2.5%;
+    width: 2.8%;
     height: auto;
   }
 }
@@ -63,10 +63,10 @@ main {
 .catcher {
   position: relative;
 
-  width: 4vw;
+  width: 5vw;
   display: block;
 }
-@media screen and (max-width: 600px) {
+@media screen and (max-width:650px) {
   .catcher {
     width: 12vw;
     height: auto;
@@ -82,22 +82,39 @@ main {
   }
 }
 
-.over, .win {
+.over,
+.win {
   text-align: center;
   display: none;
 }
-.over h1, .win h1 {
+.over h1,
+.win h1 {
   margin-bottom: 0;
 }
-.over h2, .win h2 {
+.over h2,
+.win h2 {
   margin-top: 0;
 }
-.over img, .win img {
+.over img,
+.win img {
   width: 4%;
   height: auto;
+  animation-name: shadow;
+  animation-duration: 6s;
+  animation-iteration-count: infinite;
+}
+@keyframes shadow {
+  0%,
+  50% {
+    filter: drop-shadow(0 0 0.75rem rgb(50, 217, 223));
+  }
+  100% {
+    filter: drop-shadow(0 0 0.75rem var(--bg-color));
+  }
 }
 @media screen and (max-width: 500px) {
-  .over img, .win img {
+  .over img,
+  .win img {
     width: 10%;
     height: auto;
   }

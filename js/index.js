@@ -20,7 +20,7 @@ help.addEventListener("click", () => {
           <section>
             <h5>Boxes</h5>
             <p>Cats favorite place to be!</p>
-            <p>Score +8</p>
+            <p>Score +30</p>
           </section>
         </div>
       </div>
@@ -32,7 +32,7 @@ help.addEventListener("click", () => {
           <section>
             <h5>Chocolate</h5>
             <p>Toxic, not a tasty treat! Gotta keep it for yourself.</p>
-            <p>Score -8</p>
+            <p>Score -30</p>
           </section>
         </div>
       </div>
@@ -68,7 +68,7 @@ help.addEventListener("click", () => {
           <section>
             <h5>Onion</h5>
             <p>Dangerous! Cats should steer clear of onions.</p>
-            <p>Score -5</p>
+            <p>Score -20</p>
           </section>
         </div>
       </div>
@@ -80,7 +80,7 @@ help.addEventListener("click", () => {
           <section>
             <h5>Wool Balls</h5>
             <p>Thread it, chase it, tangle in it! classic cat fun!</p>
-            <p>Score +5</p>
+            <p>Score +20</p>
           </section>
         </div>
       </div>
