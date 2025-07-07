@@ -15,6 +15,7 @@ let htmlItems = document.querySelectorAll(".item")
 let arena = document.querySelector(".catcher-area")
 
 const gameOver = document.querySelector(".over")
+const win = document.querySelector(".win")
 const paw = document.querySelector(".catcher")
 const arenaDimension = arena.getBoundingClientRect()
 let pawDimension = paw.getBoundingClientRect()
@@ -99,6 +100,11 @@ class Items {
     newElement.addEventListener("animationend", () => {
       if (catched(newElement)) {
         change.style.display = "inline"
+        if (currentTheme === "light") {
+          change.style.color = "#1e1e1e"
+        } else {
+          change.style.color = "rgb(50, 217, 223)"
+        }
         score += this.score
         displayedScore.innerText = score
 
@@ -200,14 +206,19 @@ let itemInterval = setInterval(runGenerator, interval)
 // A function to generate items every -interval- of time and update animation duration and interval based on score
 // as long as the game isn't over
 function runGenerator() {
-  if (score < 0) {
+  if (score < 0 || score >= 500) {
     htmlItems = document.querySelectorAll(".item")
     htmlItems.forEach((item) => (item.style.display = "none"))
     clearInterval(itemInterval)
 
-    gameOver.style.display = "block"
     paw.style.display = "none"
     change.style.display = "none"
+
+    if (score < 0) {
+      gameOver.style.display = "block"
+    } else {
+      win.style.display = "block"
+    }
     return
   }
 

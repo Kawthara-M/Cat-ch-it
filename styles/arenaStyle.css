@@ -82,22 +82,22 @@ main {
   }
 }
 
-.over {
+.over, .win {
   text-align: center;
   display: none;
 }
-.over h1 {
+.over h1, .win h1 {
   margin-bottom: 0;
 }
-.over h2 {
+.over h2, .win h2 {
   margin-top: 0;
 }
-.over img {
+.over img, .win img {
   width: 4%;
   height: auto;
 }
 @media screen and (max-width: 500px) {
-  .over img {
+  .over img, .win img {
     width: 10%;
     height: auto;
   }
