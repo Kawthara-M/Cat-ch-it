@@ -26,7 +26,6 @@ const detectColorScheme = () => {
   mqDark.addEventListener("change", listener)
   mqLight.addEventListener("change", listener)
 
-
   if (mqDark.matches) {
     changeWebsiteTheme("dark")
   } else {

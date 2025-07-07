@@ -117,7 +117,7 @@ class Items {
         if (this.type === "neko") {
           paw.style.width = originalPawWidth + originalPawWidth * 0.4 + "px"
           setTimeout(() => {
-            paw.style.width = originalPawWidth+"px"
+            paw.style.width = originalPawWidth + "px"
           }, 60000)
         }
 
@@ -247,8 +247,12 @@ function runGenerator() {
 
 // Event listeners
 document.addEventListener("keydown", (event) => {
-  if (event.key === "ArrowRight") movePaw("right")
-  else if (event.key === "ArrowLeft") movePaw("left")
+  const key = event.key.toLowerCase()
+  if (key === "arrowright" || key === "d") {
+    movePaw("right")
+  } else if (key === "arrowleft" || key === "a") {
+    movePaw("left")
+  }
 })
 
 // The following event listeners were written with guide of "https://www.w3schools.com/jsref/event_touchstart.asp"

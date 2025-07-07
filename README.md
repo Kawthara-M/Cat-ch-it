@@ -1,21 +1,29 @@
 <h1>
-  <img src="images/paw.gif"  width="30" height="30" style="vertical-align:middle;">
+  <img src="images/paw.gif"  width="30" height="30" style="vertical-align:middle; filter: drop-shadow(0 0 0.75rem rgb(50, 217, 223));">
   Cat-ch It!
 </h1>
 
 **By:**  Kawthar Mohammad |
 **Date:** July / 07/ 2025 
 
-
 **[GitHub](https://github.com/Kawthara-M)** |
 **[LinkedIn](www.linkedin.com/in/kawthar-ahmad-331658361)**
 
 ## Description
+A cat themed game to catch fallen items; each with corresponding effect on score. Minus score leads to game over. The speed of falling items increases along with the score.
+<br>Keyboard and Touch devices' users are all welcome!
 
-A cat themed game to catch fallen items; good & bad ones each with corresponding effect on score. Minus score leads to game over. The speed of falling items increases along with the score. Support to touchable devices was considered within development.
-<br>
-
+## Getting Started
 | Deployed version of **[Cat-ch-It](https://cat-ch-it.surge.sh/)** |
+
+**Game Instructions:**
+1. Click the "Paw" to start.
+2. Move right and left using keyboard arrows, A and D keys, or by dragging the paw by touch.
+3. Collect positive items; fish, boxes, and wool balls.
+4. If lucky enough, catch the falling luck cats to widen your paw reach.
+5. Avoid negative items; chocolate, snake plants, and onion.
+6. Once you exceed 500 points, you've won!
+7. Click the cat/paw to play again.
 
 ## Technologies Used
 

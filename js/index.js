@@ -9,7 +9,7 @@ header.addEventListener("click", () => {
       <a href="arena.html">
         <img src="images/paw.gif" id="start" title="Start" alt="Cat Paw gif"  
       /></a>`
-      header.innerText=``
+    header.innerText = ``
   }
 })
 help.addEventListener("click", () => {
