@@ -61,10 +61,10 @@ class Items {
     htmlItems = document.querySelectorAll(".item")
     let randomPosition = Math.ceil(Math.random() * 99)
     let randomPercentage = randomPosition / 100
-    let position = 0 // change variable name
+    let position = 0
 
     htmlItems.forEach((item) => {
-      if (item.offsetLeft / 100 === randomPercentage) {
+      if (item.getBoundingClientRect().left / 100 === randomPercentage) {
         position = this.initializePosition
       } else {
         position = randomPosition + "%"
@@ -81,13 +81,11 @@ class Items {
     const animationDuration =
       Math.ceil(Math.random() * (maxDuration - minDuration) + minDuration) + "s"
     const luckAnimation = "1s"
-    const originalPawWidth = paw.style.width
+    const originalPawWidth = pawDimension.width
 
-    const color = currentTheme === "dark" ? "white" : "black"
-    newElement.setAttribute("src", `images/${color}` + `-` + `${this.type}.png`)
+    newElement.setAttribute("src", `images/black-` + `${this.type}.png`)
+    newElement.setAttribute("alt", this.type)
     newElement.setAttribute("class", "item")
-   /* newElement.setAttribute("id", this.type) // is this needed?*/
-    console.log(newElement.src)
 
     newElement.style.left = this.initializePosition()
 
@@ -111,7 +109,7 @@ class Items {
         }
 
         if (this.type === "neko") {
-          paw.style.width = "7vw"
+          paw.style.width = originalPawWidth + originalPawWidth * 0.5 + "px"
           setTimeout(() => {
             paw.style.width = originalPawWidth
           }, 60000)
@@ -220,7 +218,7 @@ function runGenerator() {
     minDuration = 2
     maxDuration = 4
   }
-  if (interval <= 1700 && amountToMove < 90) {
+  if (interval <= 1700 && amountToMove < 85) {
     amountToMove += 5
   }
 

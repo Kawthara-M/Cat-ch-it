@@ -1,18 +1,19 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+const help = document.querySelector("#help")
+const header = document.querySelector("header")
+const intro = document.querySelector(".intro")
 
-    <link rel="stylesheet" href="styles/common.css" />
-    <link rel="stylesheet" href="styles/guide.css" />
-
-    <script src="js/script.js" defer></script>
-
-    <title>Guide</title>
-  </head>
-  <body>
-    <div class="conatiner">
+header.addEventListener("click", () => {
+  if (header.innerText === "X") {
+    help.innerText = "help"
+    intro.innerHTML = `      <h1>Cat-ch It!</h1>
+      <a href="arena.html">
+        <img src="images/paw.gif" id="start" title="Start" alt="Cat Paw gif"  
+      /></a>`
+      header.innerText=``
+  }
+})
+help.addEventListener("click", () => {
+  intro.innerHTML = ` <div class="conatiner">
       <div class="flex-container">
         <div class="item-container">
           <div class="img-container"><img src="images/black-box.png" /></div>
@@ -83,7 +84,8 @@
           </section>
         </div>
       </div>
-    </div>
-    <p><a href="arena.html">skip</a></p>
-  </body>
-</html>
+    </div>`
+
+  header.innerText = `X`
+  help.innerText = ""
+})

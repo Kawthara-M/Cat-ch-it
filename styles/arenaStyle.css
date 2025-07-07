@@ -3,7 +3,6 @@ body {
   display: grid;
   grid-template-columns: 1fr;
   grid-template-rows: 50px 1fr 60px;
-  font-family: "Gloria Hallelujah", cursive;
   overflow: hidden;
 }
 
@@ -44,13 +43,13 @@ main {
 }
 @media screen and (min-width: 800px) {
   .item {
-    width: 3%;
-    height: 6%;
+    width: 2.5%;
+    height: auto;
   }
 }
-@media screen and (max-width: 360px) {
+@media screen and (max-width: 600px) {
   .item {
-    width: 10%;
+    width: 9%;
     height: auto;
   }
 }
@@ -63,13 +62,13 @@ main {
 }
 .catcher {
   position: relative;
-  left: 50%;
-  width: 5vw;
+
+  width: 4vw;
   display: block;
 }
-@media screen and (max-width: 500px) {
+@media screen and (max-width: 600px) {
   .catcher {
-    width: 14vw;
+    width: 12vw;
     height: auto;
   }
 }
@@ -79,7 +78,7 @@ main {
     top: 0;
   }
   100% {
-    top: 92%;
+    top: 95%;
   }
 }
 

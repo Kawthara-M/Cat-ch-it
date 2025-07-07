@@ -1,4 +1,8 @@
-# Cat-ch it!
+<h1>
+  <img src="images/cat-paw-unscreen.gif"  width="30" height="30" style="vertical-align:middle;">
+  Cat-ch It!
+</h1>
+
 
 **Date: 6/29/2025**
 
@@ -20,7 +24,7 @@ A cat themed game to catch fallen items; good & bad ones each with corresponding
 
 
 
-## _Technologies_ Used
+## Technologies Used
 
 - HTML
 - CSS
@@ -83,16 +87,17 @@ END
 <br>
 ![Image](images/preview.png)
 
+---
 
-### **_Future Updates_**
-- [ ] More responiviness to different devices
-- [ ] Audio to livesh the game
+### **Future Updates**
+- More responsiveness to different devices
+- Audio to livesh the game
 
 
 
 ---
 
-### **_Credits_**
+### **Credits**
 
 ##### Falling Items images: [Flaticon](https://www.flaticon.com/search?word=cat)
 

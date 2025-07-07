@@ -16,6 +16,7 @@
 body {
   background-color: var(--bg-color);
   color: var(--text-color);
+  font-family: "Gloria Hallelujah", "Comic Sans MS", cursive, sans-serif;
 }
 .gloria-hallelujah-regular {
   font-family: "Gloria Hallelujah", cursive;

@@ -1,22 +1,61 @@
 body {
-  height: 100vh;
+  height: 100svh;
   background-color: var(--bg-color);
   color: var(--text-color);
-  font-family: "Gloria Hallelujah", cursive;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  text-align: center;
+  overflow: hidden;
+}
+
+header {
+  font-size: large;
+  cursor: pointer;
+  animation-name: shadow;
+  animation-duration: 6s;
+  animation-iteration-count: infinite;
+}
+
+.intro {
+  height: 260px;
+  width: 80%;
+  max-width: 60%;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: center;
-  text-align: center;
 }
 
 h1 {
-  font-family: "Gloria Hallelujah", cursive;
   font-size: 2rem;
   margin-top: 0;
+  margin-bottom: 0;
 }
 
-img {
-  width: 20%;
+#start {
+  cursor: pointer;
+  width: 10%;
+
+  animation-name: shadow;
+  animation-duration: 6s;
+  animation-iteration-count: infinite;
 }
 
+@keyframes shadow {
+  0%,
+  50% {
+    filter: drop-shadow(0 0 0.75rem rgb(50, 217, 223));
+  }
+  100% {
+    filter: drop-shadow(0 0 0.75rem var(--bg-color));
+  }
+}
+
+footer {
+  display: flex;
+  justify-content: center;
+  font-size: medium;
+  cursor: pointer;
+  margin-bottom: 6px;
+}

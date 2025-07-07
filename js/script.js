@@ -5,7 +5,6 @@ const LIGHT = "(prefers-color-scheme: light)"
 const changeWebsiteTheme = (scheme) => {
   currentTheme = scheme
   document.documentElement.setAttribute("data-theme", scheme)
-
 }
 
 const detectColorScheme = () => {
